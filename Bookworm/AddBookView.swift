@@ -26,10 +26,10 @@
             NavigationView {
                 Form {
                     Section {
-                        TextField("Name of book", text: $title)
-                        TextField("Author's name", text: $author)
+                        TextField("Название книги", text: $title)
+                        TextField("Имя автора", text: $author)
 
-                        Picker("Genre", selection: $genre) {
+                        Picker("Жанр", selection: $genre) {
                             ForEach(genres, id: \.self) {
                                 Text($0)
                             }
@@ -40,11 +40,11 @@
                         TextEditor(text: $review)
                         RatingView(rating: $rating)
                     } header: {
-                        Text("Write a review")
+                        Text("Написать отзыв")
                     }
 
                     Section {
-                        Button("Save") {
+                        Button("Сохранить") {
                             let newBook = Book(context: moc)
                             newBook.id = UUID()
                             newBook.title = title
@@ -59,7 +59,7 @@
                         }
                     }
                 }
-                .navigationTitle("Add Book")
+                .navigationTitle("Добавить книгу")
             }
         }
     }

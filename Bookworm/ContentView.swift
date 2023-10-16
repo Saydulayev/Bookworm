@@ -16,12 +16,15 @@ struct ContentView: View {
         NSSortDescriptor(keyPath: \Book.title, ascending: true),
         NSSortDescriptor(keyPath: \Book.author, ascending: true)
     ]) var books: FetchedResults<Book>
-
+    
     @State private var showingAddScreen = false
     @State private var isSearching = false
     @State private var searchText: String = ""
     
-
+    @State private var isEditMode: EditMode = .inactive
+    
+    
+    
     var filteredBooks: [Book] {
         if searchText.isEmpty {
             return Array(books)
@@ -29,7 +32,7 @@ struct ContentView: View {
             return books.filter { $0.title?.lowercased().contains(searchText.lowercased()) == true || $0.author?.lowercased().contains(searchText.lowercased()) == true }
         }
     }
-
+    
     var body: some View {
         NavigationView {
             List {
@@ -61,10 +64,18 @@ struct ContentView: View {
                 .onMove(perform: move)
             }
             .navigationTitle("Книжный червь")
+            .environment(\.editMode, $isEditMode)
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
-                    EditButton()
+                    Button(action: {
+                        withAnimation {
+                            isEditMode = isEditMode == .active ? .inactive : .active
+                        }
+                    }) {
+                        Text(isEditMode == .active ? "Готово" : "Изменить")
+                    }
                 }
+                
                 ToolbarItem(placement: .topBarTrailing) {
                     HStack {
                         if isSearching {
@@ -90,7 +101,7 @@ struct ContentView: View {
             })
         }
     }
-
+    
     func deleteBooks(at offsets: IndexSet) {
         for offset in offsets {
             let book = books[offset]
@@ -123,7 +134,7 @@ extension Book {
     var bookAuthor: String {
         author ?? "Unknown Author"
     }
-
+    
     var bookGenre: String {
         genre ?? "Unknown Genre"
     }

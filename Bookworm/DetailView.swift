@@ -23,7 +23,7 @@ struct DetailView: View {
     // DateFormatter для форматирования даты
     let formatter: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.dateStyle = .long
+        formatter.dateStyle = .short
         formatter.timeStyle = .short
         return formatter
     }()
@@ -31,7 +31,7 @@ struct DetailView: View {
     var body: some View {
         ScrollView {
             Text(book.title ?? "Unknown Book")
-                .font(.largeTitle).bold()
+                .font(.title).bold()
                 .padding(10)
                 .background(colorScheme == .dark ? Color.white.opacity(0.1) : Color.black.opacity(0.1))
                 .clipShape(Capsule())
@@ -49,7 +49,7 @@ struct DetailView: View {
                     .foregroundColor(.white)
                     .background(Color.black.opacity(0.75))
                     .clipShape(Capsule())
-                    .overlay(Capsule().stroke(Color.yellow, lineWidth: 1))
+//                    .overlay(Capsule().stroke(Color.yellow, lineWidth: 1))
                     .offset(x: -5, y: -5)
             }
             Text(book.author ?? "Unknown author")
