@@ -1,3 +1,9 @@
+<p align="center">
+  <img src="https://github.com/Saydulayev/Bookworm/blob/main/Bookworm/Screenshots/Screen1.png" width="400">
+  <img src="https://github.com/Saydulayev/Bookworm/blob/main/Bookworm/Screenshots/Screen2.png" width="400">
+</p>
+
+
 # Bookworm
 
 Welcome to my Bookworm App repository! This app is a personal project I've been working on, and it's all about helping book enthusiasts, like myself, keep track of their reading lists, reviews, and ratings.
