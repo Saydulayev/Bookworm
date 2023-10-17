@@ -32,10 +32,11 @@ struct DetailView: View {
         ScrollView {
             Text(book.title ?? "Unknown Book")
                 .font(.title).bold()
+                .multilineTextAlignment(.center)
                 .padding(10)
                 .background(colorScheme == .dark ? Color.white.opacity(0.1) : Color.black.opacity(0.1))
                 .clipShape(Capsule())
-                .overlay(Capsule().stroke(Color.yellow, lineWidth: 2))
+                .overlay(Capsule().stroke(Color.yellow, lineWidth: 1))
                 .padding(.vertical)
             ZStack(alignment: .bottomTrailing) {
                 Image(book.genre ?? "Фантастика")
