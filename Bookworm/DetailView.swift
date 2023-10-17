@@ -11,19 +11,19 @@ import CoreData
 
 struct DetailView: View {
     let book: Book
-
+    
     @Environment(\.managedObjectContext) var moc
     @Environment(\.dismiss) var dismiss
     @Environment(\.colorScheme) var colorScheme
-
+    
     @State private var showingDeleteAlert = false
     @State private var showingShareSheet = false
     @State private var isToolbarHidden = false
     @Binding var isInterfaceHidden: Bool
-
-
-
-
+    
+    
+    
+    
     // DateFormatter для форматирования даты
     let formatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -31,7 +31,7 @@ struct DetailView: View {
         formatter.timeStyle = .short
         return formatter
     }()
-
+    
     var body: some View {
         ScrollView {
             Text(book.title ?? "Unknown Book")
@@ -46,7 +46,7 @@ struct DetailView: View {
                 Image(book.genre ?? "Фантастика")
                     .resizable()
                     .scaledToFit()
-
+                
                 Text(book.genre?.uppercased() ?? "FANTASY")
                     .font(.caption)
                     .fontWeight(.black)
@@ -54,7 +54,7 @@ struct DetailView: View {
                     .foregroundColor(.white)
                     .background(Color.black.opacity(0.75))
                     .clipShape(Capsule())
-//                    .overlay(Capsule().stroke(Color.yellow, lineWidth: 1))
+                //                    .overlay(Capsule().stroke(Color.yellow, lineWidth: 1))
                     .offset(x: -5, y: -5)
             }
             Text(book.author ?? "Unknown author")
@@ -67,15 +67,16 @@ struct DetailView: View {
                     .foregroundColor(.gray)
                     .padding(.top)
             }
-
+            
             Text(book.review ?? "No review")
                 .padding()
-
+            
             RatingView(rating: .constant(Int(book.rating)))
                 .font(.largeTitle)
         }
-//        .navigationTitle(book.title ?? "Unknown Book")
+        //        .navigationTitle(book.title ?? "Unknown Book")
         .navigationBarTitleDisplayMode(.inline)
+        .navigationBarBackButtonHidden(isInterfaceHidden)
         .alert("Удалить книгу", isPresented: $showingDeleteAlert) {
             Button("Удалить", role: .destructive, action: deleteBook)
             Button("Отменить", role: .cancel) { }
@@ -100,7 +101,7 @@ struct DetailView: View {
             }
         }
     }
-
+    
     func deleteBook() {
         moc.delete(book)
         try? moc.save()
@@ -127,20 +128,29 @@ struct DetailView: View {
         
         // Добавьте небольшую задержку, чтобы дать SwiftUI время на обновление представления
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            guard let image = captureScreenshot() else { return }
+            guard let image = captureScreenshot() else {
+                // Если не удалось захватить скриншот, не забудьте снова показать интерфейс.
+                self.isToolbarHidden = false
+                self.isInterfaceHidden = false
+                return
+            }
+            
             let av = UIActivityViewController(activityItems: [image], applicationActivities: nil)
-
+            
+            av.completionWithItemsHandler = { (_, _, _, _) in
+                // Этот блок вызывается после того, как пользователь закончил взаимодействие с UIActivityViewController.
+                // Возвращаем тулбар и интерфейс обратно после того, как окно для деления закрыто
+                self.isToolbarHidden = false
+                self.isInterfaceHidden = false
+            }
+            
             if let windowScene = UIApplication.shared.connectedScenes.first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene,
                let rootViewController = windowScene.windows.first?.rootViewController {
-                rootViewController.present(av, animated: true, completion: {
-                    // Возвращаем тулбар обратно после того, как окно для деления закрыто
-                    self.isToolbarHidden = false
-                })
+                rootViewController.present(av, animated: true, completion: nil)
             }
         }
     }
 }
-
 
 
 extension UIWindow {
