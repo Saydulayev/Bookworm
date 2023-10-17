@@ -65,7 +65,7 @@ struct ContentView: View {
                 .onDelete(perform: deleteBooks)
                 .onMove(perform: move)
             }
-            .navigationBarTitle(isInterfaceHidden ? "" : "Книжный червь", displayMode: .inline)
+            .navigationBarTitle(isInterfaceHidden ? "" : "Книжный червь")
             .environment(\.editMode, $isEditMode)
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
