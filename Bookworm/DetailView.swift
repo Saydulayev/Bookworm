@@ -18,6 +18,10 @@ struct DetailView: View {
 
     @State private var showingDeleteAlert = false
     @State private var showingShareSheet = false
+    @State private var isToolbarHidden = false
+    @Binding var isInterfaceHidden: Bool
+
+
 
 
     // DateFormatter для форматирования даты
@@ -79,17 +83,19 @@ struct DetailView: View {
             Text("Вы уверены?")
         }
         .toolbar {
-            HStack {
-                Button(action: shareScreenshot) {
-                    Label("Share this view", systemImage: "square.and.arrow.up")
-                }
-                
-                Spacer()
-                
-                Button(action: {
-                    showingDeleteAlert = true
-                }) {
-                    Label("Delete this book", systemImage: "trash")
+            if !isToolbarHidden && !isInterfaceHidden {
+                HStack {
+                    Button(action: shareScreenshot) {
+                        Label("Share this view", systemImage: "square.and.arrow.up")
+                    }
+                    
+                    Spacer()
+                    
+                    Button(action: {
+                        showingDeleteAlert = true
+                    }) {
+                        Label("Delete this book", systemImage: "trash")
+                    }
                 }
             }
         }
@@ -116,12 +122,21 @@ struct DetailView: View {
         return nil
     }
     func shareScreenshot() {
-        guard let image = captureScreenshot() else { return }
-        let av = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+        isToolbarHidden = true
+        isInterfaceHidden = true
+        
+        // Добавьте небольшую задержку, чтобы дать SwiftUI время на обновление представления
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            guard let image = captureScreenshot() else { return }
+            let av = UIActivityViewController(activityItems: [image], applicationActivities: nil)
 
-        if let windowScene = UIApplication.shared.connectedScenes.first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene,
-           let rootViewController = windowScene.windows.first?.rootViewController {
-            rootViewController.present(av, animated: true, completion: nil)
+            if let windowScene = UIApplication.shared.connectedScenes.first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene,
+               let rootViewController = windowScene.windows.first?.rootViewController {
+                rootViewController.present(av, animated: true, completion: {
+                    // Возвращаем тулбар обратно после того, как окно для деления закрыто
+                    self.isToolbarHidden = false
+                })
+            }
         }
     }
 }

@@ -20,6 +20,8 @@ struct ContentView: View {
     @State private var showingAddScreen = false
     @State private var isSearching = false
     @State private var searchText: String = ""
+    @State private var isInterfaceHidden = false
+
     
     @State private var isEditMode: EditMode = .inactive
     
@@ -37,7 +39,7 @@ struct ContentView: View {
         NavigationView {
             List {
                 ForEach(filteredBooks) { book in
-                    NavigationLink(destination: DetailView(book: book)) {
+                    NavigationLink(destination: DetailView(book: book, isInterfaceHidden: $isInterfaceHidden)) {
                         HStack {
                             EmojiRatingView(rating: book.rating)
                                 .font(.largeTitle)
@@ -63,7 +65,7 @@ struct ContentView: View {
                 .onDelete(perform: deleteBooks)
                 .onMove(perform: move)
             }
-            .navigationTitle("Книжный червь")
+            .navigationBarTitle(isInterfaceHidden ? "" : "Книжный червь", displayMode: .inline)
             .environment(\.editMode, $isEditMode)
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
