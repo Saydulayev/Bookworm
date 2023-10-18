@@ -33,6 +33,7 @@
 		C0683DB02ACEAA3400843D5D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C0683DB82ACEC61F00843D5D /* DataController.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataController.xcdatamodel; sourceTree = "<group>"; };
 		C0683DBA2ACEC65100843D5D /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
+		C071DD112ADFCF4300CF805D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		C099C7BD2AD6D26900D757AB /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		C0AF6F492ADD460E008F8E08 /* Screen1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Screen1.png; sourceTree = "<group>"; };
 		C0AF6F4B2ADD4614008F8E08 /* Screen2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Screen2.png; sourceTree = "<group>"; };
@@ -69,6 +70,7 @@
 		C0683DA82ACEAA3300843D5D /* Bookworm */ = {
 			isa = PBXGroup;
 			children = (
+				C071DD112ADFCF4300CF805D /* Info.plist */,
 				C0683DA92ACEAA3300843D5D /* BookwormApp.swift */,
 				C0683DAB2ACEAA3300843D5D /* ContentView.swift */,
 				C02916152AD6AC3F002FBCA6 /* EmojiRatingView.swift */,
@@ -319,6 +321,7 @@
 				DEVELOPMENT_TEAM = 93NA5FP2X8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Bookworm/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Книжный червь";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.books";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -351,6 +354,7 @@
 				DEVELOPMENT_TEAM = 93NA5FP2X8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Bookworm/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Книжный червь";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.books";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
