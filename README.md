@@ -3,10 +3,10 @@
   <img src="https://github.com/Saydulayev/Bookworm/blob/main/Bookworm/Screenshots/Screen2.png" width="400">
 </p>
 
+# Книжный червь
+### Bookworm
 
-# Bookworm
-
-Welcome to my Bookworm App repository! This app is a personal project I've been working on, and it's all about helping book enthusiasts, like myself, keep track of their reading lists, reviews, and ratings.
+Welcome to my Bookworm App repository! This app is dedicated to all the book enthusiasts out there. It's designed to help you keep track of your reading lists, reviews, and ratings.
 
 ## Features
 
@@ -16,42 +16,40 @@ In this app, you can:
 - Write and store reviews for any book.
 - Rate the books you've read.
 - Benefit from the app's persistent storage feature.
-- Enjoy the dark mode feature, which I personally love.
 
 ## Technologies
 
-I built this project using:
+This project was built using:
 
-- **SwiftUI**: An amazing UI toolkit that allows for a more declarative way of designing apps.
-- **Core Data**: I chose this for managing the model layer of the application, especially for its persistent data storage capabilities.
+- **SwiftUI**: An intuitive UI toolkit that offers a declarative approach to app design.
+- **Core Data**: Used for managing the model layer of the application and for its persistent data storage capabilities.
 
-## Development Status
-
-**Heads up!** This app is still a work in progress. I'm actively adding new features and refining the existing ones. So, it might not be in its final state, and some features may change as I continue to develop.
+## Feedback and Contributions
 
 I would love to hear feedback or suggestions for improvements. If you've got any ideas or notice any issues, please let me know, either by opening an issue or submitting a pull request.
 
-## How You Can Contribute
-
-If you'd like to join me in this venture:
+### How You Can Contribute
 
 1. Feel free to fork the repository.
 2. Create a branch (please give it a meaningful name).
-3. Make your magic happen.
+3. Work on your enhancements or fixes.
 4. Submit a pull request.
 
-I genuinely appreciate all the help and will review all pull requests!
+I value and welcome all contributions and will review all pull requests!
 
 ## Future Plans
 
-- I'm aiming to enhance the user interface and overall experience.
-- Implementing more advanced book management features is on my list.
-- I'd love to add a feature that allows for sharing.
-- I'm continuously working on improving data management.
+- I aim to constantly refine the user interface for a seamless experience.
+- Adding more advanced book management features remains a priority.
+- Introducing a feature for sharing is on the horizon.
+- Continuous efforts to bolster data management are in place.
 
-## Disclaimer
+## Available Now
 
-Since this is still under development, there might be some quirks or bugs. Kindly bear with me, and remember, I'm always working to get everything polished and up to the mark.
+I'm thrilled to announce that Bookworm is now available on the App Store! Dive in and explore all its features. Thank you for your support, and happy reading!
+
+## Link
+[Книжный червь](https://apps.apple.com/app/id6469687798)
 
 
 
