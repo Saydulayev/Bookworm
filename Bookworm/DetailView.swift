@@ -40,10 +40,13 @@ struct DetailView: View {
             Text(book.title ?? "Unknown Book")
                 .font(.title).bold()
                 .multilineTextAlignment(.center)
-                .padding(10)
-                .background(colorScheme == .dark ? Color.white.opacity(0.1) : Color.black.opacity(0.1))
-                .clipShape(Capsule())
-                .overlay(Capsule().stroke(Color.yellow, lineWidth: 1))
+                .padding()
+                .foregroundColor(colorScheme == .dark ? .white : .black)
+                .background(
+                    RoundedRectangle(cornerRadius: 10)
+                        .fill(colorScheme == .dark ? .black : .white)
+                        .shadow(color: .yellow, radius: 3, x: 0, y: 0)
+                )
                 .padding(.vertical)
             ZStack(alignment: .bottomTrailing) {
                 Image(book.genre ?? "Фантастика")
