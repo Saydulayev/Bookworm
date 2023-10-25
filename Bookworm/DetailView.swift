@@ -62,9 +62,15 @@ struct DetailView: View {
                   //.overlay(Capsule().stroke(Color.yellow, lineWidth: 1))
                     .offset(x: -5, y: -5)
             }
-            Text(book.author ?? "Unknown author")
-                .font(.title)
-                .foregroundColor(.secondary)
+            VStack {
+                Text("Автор:")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                Text(book.author ?? "Unknown author")
+                    .font(.title)
+                    .foregroundColor(.secondary)
+            }
+            .padding(.vertical, 5)
             
             if let date = book.date {
                 Text("Добавлено: \(formatter.string(from: date))")
