@@ -19,7 +19,10 @@ struct DetailView: View {
     @State private var showingDeleteAlert = false
     @State private var showingShareSheet = false
     @State private var isToolbarHidden = false
+    @State private var showingEditScreen = false
+    
     @Binding var isInterfaceHidden: Bool
+    
     
     
     
@@ -89,6 +92,9 @@ struct DetailView: View {
                     Button(action: shareScreenshot) {
                         Label("Share this view", systemImage: "square.and.arrow.up")
                     }
+                    Button(action: { showingEditScreen.toggle() }) {
+                            Label("Редактировать книгу", systemImage: "pencil")
+                        }
                     
                     Spacer()
                     
@@ -99,6 +105,10 @@ struct DetailView: View {
                     }
                 }
             }
+        }
+        .sheet(isPresented: $showingEditScreen) {
+            // Передача текущей книги в качестве параметра, чтобы убедиться, что мы редактируем правильный объект
+            EditBookView(book: book)
         }
     }
     
