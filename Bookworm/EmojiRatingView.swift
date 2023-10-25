@@ -30,10 +30,7 @@ struct EmojiRatingView: View {
                         Text("4")
                     default:
                         Text("5")
-                    }
-
-                    // Добавляем смайлики звезды под каждой цифрой рейтинга
-                    
+                    }                    
                 }
             }
             Text(String(repeating: "⭐️", count: Int(rating)))

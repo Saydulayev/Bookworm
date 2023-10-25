@@ -41,7 +41,6 @@ struct DetailView: View {
                 .font(.title).bold()
                 .multilineTextAlignment(.center)
                 .padding()
-                .foregroundColor(colorScheme == .dark ? .white : .black)
                 .background(
                     RoundedRectangle(cornerRadius: 10)
                         .fill(colorScheme == .dark ? .black : .white)
@@ -60,7 +59,7 @@ struct DetailView: View {
                     .foregroundColor(.white)
                     .background(Color.black.opacity(0.75))
                     .clipShape(Capsule())
-                //                    .overlay(Capsule().stroke(Color.yellow, lineWidth: 1))
+                  //.overlay(Capsule().stroke(Color.yellow, lineWidth: 1))
                     .offset(x: -5, y: -5)
             }
             Text(book.author ?? "Unknown author")
@@ -139,10 +138,9 @@ struct DetailView: View {
         isToolbarHidden = true
         isInterfaceHidden = true
         
-        // Добавьте небольшую задержку, чтобы дать SwiftUI время на обновление представления
+        // небольшая задержка, чтобы дать SwiftUI время на обновление представления
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             guard let image = captureScreenshot() else {
-                // Если не удалось захватить скриншот, не забудьте снова показать интерфейс.
                 self.isToolbarHidden = false
                 self.isInterfaceHidden = false
                 return
